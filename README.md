@@ -66,7 +66,7 @@ S -18--> D
 
 ## Considerations
 
-> The algorithm does not compute the *shortest path* from `S` to `E`. Only the *minimum cost* (time) is computed!
+> The algorithm does not compute the *shortest path* from `S` to `D`. Only the *minimum cost* (time) is computed!
 
 An additional algorithm may use the *minimum cost* to actually find the *shortest path* by pruning solution space as soon as the evaluated path exceed that *minimum cost*.
 
