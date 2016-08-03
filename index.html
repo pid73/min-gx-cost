@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Min-gx-cost usage example</title>
+    <script src="mingxcost.js"></script>
+  </head>
+  <body>
+<pre id="d1">
+1, 1, 9, 9, 1, 9, 9, 9, 1
+1, 9, 9, 9, 1, 7, 9, 9, 1
+1, 9, 9, 9, 1, 9, 9, 9, 1
+</pre>
+<pre id="d2">
+1, 20, 20, 1
+1, 20, 20, 1
+</pre>
+<pre id="d3">
+1, 20, 20, 1
+1, 20, 20, 1
+</pre>
+    <script>
+
+      for (i = 1; i <= 3; i++) {
+        d = document.getElementById("d" + i).innerText;
+        t = MINGXCOST.parseTable(d);
+        e = MINGXCOST.verifyTable(t);
+
+        if (e.length === 0) {
+          console.log("min time [" + i + "]: " + MINGXCOST.minTime(t));
+        } else {
+          console.log("error [" + i + "]: " + e);
+        }
+      }
+
+    </script>
+  </body>
+</html>
