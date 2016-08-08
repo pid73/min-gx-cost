@@ -12,7 +12,7 @@ This JS implementation is easily adapted to any language. The real problem here 
 
 # Definition
 
-You have a **complete undirected graph with non-negative dynamic weights**. Two nodes are identified as the source node `S` and the destination node `D`. The weights on the edges specify the cost to traverse the edge in temporal units (CPU clocks, milliseconds or years isn't actually relevant).
+You have a **complete undirected graph with non-negative dynamic weights**. Two nodes are identified as the source node `S` and the destination node `D`. The weights on the edges specify the cost to traverse the edge in steps (CPU clocks, milliseconds or years isn't actually relevant).
 
 The algorithm starts at time 0 on node `S` and has the task to compute the minimum time (cost) to reach node `D`. The traversal of an edge requires the time specified by its weight.
 
@@ -38,11 +38,11 @@ S --*--> D
          ^
 ```
 
-For every temporal unit, all weights on the edges may vary arbitrarily. By the time node `D` is reached, the weight in the example has changed 7 times.
+For every step, all weights may vary. By the time node `D` is reached, the weight of the example edge has changed 7 times.
 
-Weights may vary from a minimum of `1` to a fixed maximum value which is defined by the input data itself (see below for details), effectively severing the edge (e.G. a weight of 1000 would mean you'll never get there if you have at most 80 temporal units at your disposal). This way also non-complete graphs are solved.
+Weights may vary from a minimum of `1` to a fixed maximum value which is defined by the input data itself (see below for details), effectively severing the edge (e.G. a weight of 1000 would mean you'll never get there if you have at most 80 steps at your disposal). This way also non-complete graphs are solved.
 
-It is possible to stay on a node as many temporal units as desired. This approach means that instead of traversing immediately an edge, it is possible to wait for the weight to drop.
+It is possible to stay on a node as many steps as desired. This approach means that instead of traversing immediately an edge, it is possible to wait for the weight to drop.
 
 This is an example of a smarter solution that waits 2 rounds until the weight drops:
 
@@ -70,13 +70,13 @@ S -18--> D
 
 An additional algorithm may use the *minimum cost* to actually find the *shortest path* by pruning solution space as soon as the evaluated path exceed that *minimum cost*.
 
-This algorithm computes the *minimum cost* in `O(n^2 * t)`, where `n` is the number of nodes and `t` the number of temporal units about which data is available.
+This algorithm computes the *minimum cost* in `O(n^2 * t)`, where `n` is the number of nodes and `t` the number of steps about which data is available.
 
 > Note: applying naively static-weight algorithms is futile. The dynamic-weight version of the *shortest path problem* is forbiddingly more complex.
 
 ## Input
 
-The graph is complete, so the only information that defines it is the weights of each edge for each temporal unit. A table of weights will have `n * n` columns and `t` rows.
+The graph is complete, so the only information that defines it is the weights of each edge for each step. A table of weights will have `n * n` columns and `t` rows.
 
 For nodes `A`, `B` and `C` the weights for all edges must be given, as shown here:
 
